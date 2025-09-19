@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>lland Minecraft Server</title>
+<meta name="description" content="lland Minecraft server — Vanilla Survival с модами, Whitelist.">
+<style>
+:root{
+  --bg:#0a0a0f;
+  --panel:rgba(255,255,255,0.05);
+  --glass-border:rgba(255,255,255,0.08);
+  --accent:#6EE7F9;
+  --accent-2:#8B5CF6;
+  --muted:rgba(255,255,255,0.6);
+  --glass-blur:16px;
+  --radius:18px;
+  --transition:0.4s cubic-bezier(.2,.9,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background: url('1.png') center/cover no-repeat,var(--bg);color:#eef;font-family:Inter, sans-serif;scroll-behavior:smooth}
+a{text-decoration:none;color:inherit}
+.stage{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.blob{position:absolute;filter:blur(60px) saturate(140%);opacity:0.65;mix-blend-mode:screen;animation:float 16s ease-in-out infinite}
+.blob.b1{width:520px;height:520px;background:linear-gradient(135deg,var(--accent),transparent);left:-10%;top:5%}
+.blob.b2{width:420px;height:420px;background:linear-gradient(130deg,var(--accent-2),transparent);right:-5%;bottom:10%}
+@keyframes float{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-40px) scale(1.07)}100%{transform:translateY(0) scale(1)}}
+
+header{display:flex;align-items:center;justify-content:space-between;padding:28px 36px;position:relative;z-index:5}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo img{height:48px;width:48px;border-radius:12px;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
+nav{display:flex;gap:18px;align-items:center}
+nav a{color:var(--muted);padding:8px 12px;border-radius:10px;transition:var(--transition)}
+nav a:hover{background:linear-gradient(90deg,rgba(255,255,255,0.03),transparent)}
+
+.hero{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;max-width:1200px;margin:0 auto;padding:80px 28px}
+.hero-left{flex:1;min-width:280px}
+.hero-left h1{font-size:48px;line-height:1.1;margin-bottom:16px;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;color:transparent}
+.hero-left p{color:var(--muted);margin-bottom:24px;font-size:18px}
+.btn{display:inline-block;padding:14px 24px;border-radius:14px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);cursor:pointer;transition:var(--transition);font-weight:600;color:#eef}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,0.6),0 0 12px var(--accent)}
+
+.hero-right{flex:1;display:flex;justify-content:center;min-width:280px;position:relative}
+.hero-right img{width:250px;height:250px;border-radius:18px;object-fit:cover;border:1px solid var(--glass-border);backdrop-filter:blur(var(--glass-blur))}
+
+.section{max-width:1200px;margin:48px auto;padding:28px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border);backdrop-filter: blur(var(--glass-blur)) saturate(120%);border-radius:var(--radius);padding:28px;box-shadow:0 6px 30px rgba(0,0,0,0.6);position:relative;overflow:hidden;transition:var(--transition)}
+.card h2{margin-bottom:12px;font-size:28px}
+.card p{color:var(--muted);margin-bottom:16px}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.proj{position:relative;overflow:hidden;border-radius:14px;padding:18px;height:160px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));backdrop-filter: blur(10px);transition: transform 400ms ease, box-shadow 400ms ease, filter 400ms ease; transform-style: preserve-3d;}
+.proj:hover{transform: translateY(-12px) rotateX(2deg) rotateY(2deg) scale(1.03);box-shadow:0 24px 60px rgba(0,0,0,0.7);filter: drop-shadow(0 0 12px var(--accent)) drop-shadow(0 0 16px var(--accent-2))}
+.sheen{position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06) 30%, transparent 45%);mix-blend-mode:overlay;transform:translateX(-120%);animation:sheen 6s linear infinite}
+@keyframes sheen{0%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+
+footer{padding:28px;text-align:center;color:var(--muted)}
+
+.cursor{position:fixed;left:0;top:0;width:14px;height:14px;border-radius:50%;pointer-events:none;z-index:60;transform:translate(-50%,-50%);mix-blend-mode:screen;background:radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,0.15) 30%, rgba(110,231,249,0.4));box-shadow:0 6px 18px rgba(110,231,249,0.06)}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+</div>
+
+<header>
+  <div class="logo"><img src="logo.png" alt="lland"/><h1>lland Server</h1></div>
+  <nav>
+    <a href="#about">О сервере</a>
+    <a href="#mods">Моды</a>
+    <a href="https://example.org" target="_blank">Подать заявку</a>
+    <a href="https://discord.gg" target="_blank">Discord</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <h1>lland Minecraft Server</h1>
+    <p>Vanilla Survival с модами: Anti-Cheat, Voice Chat, Whitelist. Играйте с друзьями прямо сейчас!</p>
+    <div class="btn" id="playBtn">IP сервера: mc.lland.exparc.is-a.dev</div>
+  </div>
+  <div class="hero-right">
+    <img src="logo.png" alt="lland logo"/>
+  </div>
+</section>
+
+<section class="section card" id="about">
+  <h2>О сервере</h2>
+  <p>lland — это Vanilla Survival сервер на ядре <strong>Arclight</strong> с дружелюбным сообществом. Сервер работает по <strong>Whitelist</strong>, обеспечивая безопасную и комфортную игру. Подключайтесь, стройте и исследуйте мир вместе с друзьями!</p>
+</section>
+
+<section class="section projects" id="mods">
+  <article class="proj card">
+    <div class="sheen"></div>
+    <h2>Immersive Aircraft</h2>
+    <p>Моды добавляющие реалистичные самолёты и воздушные приключения.</p>
+  </article>
+  <article class="proj card">
+    <div class="sheen"></div>
+    <h2>Aviator Dreams Reloaded</h2>
+    <p>Модификация с новыми авиа-приключениями и улучшенной механикой.</p>
+  </article>
+</section>
+
+<footer>
+  © lland Minecraft Server — mc.lland.exparc.is-a.dev — Whitelist
+</footer>
+
+<div class="cursor" id="cursor"></div>
+
+<script>
+// Cursor
+const cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';});
+
+// Copy IP
+document.getElementById('playBtn').addEventListener('click',()=>{
+  navigator.clipboard.writeText('mc.lland.exparc.is-a.dev');
+  alert('IP сервера скопирован в буфер!');
+});
+
+// Sparks animation
+function makeSparks(){
+  for(let i=0;i<8;i++){
+    const s=document.createElement('div');
+    s.className='spark';
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    s.style.opacity=Math.random();
+    s.style.transform=`scale(${0.6+Math.random()*0.9})`;
+    document.body.appendChild(s);
+    (function(ss){
+      setTimeout(()=>{ss.style.transition='all 2000ms ease-out';ss.style.top=(parseFloat(ss.style.top)+(Math.random()*10-5))+'%';ss.style.left=(parseFloat(ss.style.left)+(Math.random()*10-5))+'%';ss.style.opacity=0},200+Math.random()*2000);
+      setTimeout(()=>ss.remove(),3000+Math.random()*2000);
+    })(s)
+  }
+}
+window.addEventListener('load',()=>{makeSparks();setInterval(makeSparks,4200)});
+</script>
