@@ -102,7 +102,7 @@ footer{padding:28px;text-align:center;color:var(--muted)}
 
 <div class="countdown-wrap">
   <div class="countdown" id="countdown">
-    <span class="label">Энд открывается:</span>
+    <span class="label">Победитель эндер-дракона:</span>
     <span class="time" id="countdownTime">calculating...</span>
   </div>
 </div>
@@ -199,7 +199,7 @@ window.addEventListener('load', ()=>{ makeSparks(); setInterval(makeSparks,4200)
     const now = new Date();
     let diff = endDate - now;
     if (diff <= 0) {
-      timeEl.textContent = 'Сейчас!';
+      timeEl.textContent = 'Ivan_Empire';
       wrapEl.classList.add('pulse');
       return;
     }
@@ -240,3 +240,4 @@ document.getElementById('playBtn').addEventListener('keydown', e => {
 
 </body>
 </html>
+
